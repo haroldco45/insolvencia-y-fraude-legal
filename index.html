@@ -3,42 +3,53 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IA Legal — Vibras Positivas HM</title>
+<title>IA Legal Premium — Vibras Positivas HM</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;700&display=swap');
 
 :root {
   --azul: #0A1628; --azul-m: #112240; --naranja: #F4A261;
   --dorado: #E9C46A; --blanco: #F8F5F0; --gris: #A8B2C4; --rojo: #E63946;
+  --verde: #2A9D8F;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'DM Sans', sans-serif; background: var(--azul); color: var(--blanco); }
+body { font-family: 'DM Sans', sans-serif; background: var(--azul); color: var(--blanco); overflow-x: hidden; }
 
-header { background: linear-gradient(160deg, #0A1628, #1D3461); padding: 40px 20px; text-align: center; border-bottom: 3px solid var(--naranja); }
-h1 { font-family: 'DM Serif Display', serif; font-size: 28px; margin-top: 10px; }
+/* HEADER */
+header { background: linear-gradient(160deg, #0A1628, #1D3461); padding: 50px 20px; text-align: center; border-bottom: 3px solid var(--naranja); }
+h1 { font-family: 'DM Serif Display', serif; font-size: 30px; margin-top: 10px; color: var(--blanco); }
 
-.container { max-width: 800px; margin: 20px auto; padding: 0 15px; }
+.container { max-width: 900px; margin: 0 auto; padding: 20px 15px; }
+
+/* NAVEGACIÓN MODULAR */
+.nav-tabs { display: flex; gap: 10px; margin-bottom: 20px; overflow-x: auto; padding-bottom: 10px; scrollbar-width: none; }
+.tab-btn { 
+    background: var(--azul-m); border: 1px solid var(--border); color: var(--gris); 
+    padding: 12px 20px; border-radius: 12px; cursor: pointer; white-space: nowrap; font-weight: 700; transition: 0.3s;
+}
+.tab-btn.active { background: var(--naranja); color: var(--azul); border-color: var(--naranja); }
+
+/* MÓDULOS */
+.module { display: none; animation: fadeIn 0.4s ease forwards; }
+.module.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
 /* BUSCADOR IA */
-.ai-box { background: var(--azul-m); border: 1px solid rgba(244,162,97,0.3); border-radius: 16px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-.ai-header { color: var(--dorado); font-weight: 700; margin-bottom: 10px; font-size: 18px; }
-
+.ai-box { background: var(--azul-m); border: 1px solid rgba(244,162,97,0.3); border-radius: 16px; padding: 25px; margin-bottom: 25px; }
 .search-wrap { display: flex; gap: 10px; margin: 15px 0; }
-input { flex: 1; background: #081221; border: 1px solid #2a3e5a; padding: 15px; border-radius: 10px; color: white; font-size: 16px; outline: none; }
-input:focus { border-color: var(--naranja); }
-button { background: var(--naranja); color: var(--azul); border: none; padding: 0 20px; border-radius: 10px; font-weight: 700; cursor: pointer; }
+input { flex: 1; background: #081221; border: 1px solid #2a3e5a; padding: 15px; border-radius: 10px; color: white; outline: none; }
+button.main-btn { background: var(--naranja); color: var(--azul); border: none; padding: 0 25px; border-radius: 10px; font-weight: 700; cursor: pointer; }
 
-#res { 
-    margin-top: 20px; padding: 20px; border-radius: 12px; 
-    background: rgba(255,255,255,0.05); border-left: 5px solid var(--naranja);
-    display: none; line-height: 1.6; animation: slideIn 0.3s ease;
-}
-@keyframes slideIn { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: translateX(0); } }
+#res { padding: 20px; border-radius: 12px; background: rgba(255,255,255,0.05); border-left: 5px solid var(--naranja); display: none; margin-top: 15px; }
 
-.tag { display: inline-block; background: rgba(244,162,97,0.1); color: var(--naranja); padding: 4px 10px; border-radius: 5px; font-size: 12px; margin: 5px 3px; cursor: pointer; }
+/* CASOS DE TENDENCIA Y LEY EXTENDIDA */
+.card-legal { background: var(--azul-m); border-radius: 15px; padding: 20px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.05); }
+.card-legal h3 { color: var(--naranja); margin-bottom: 10px; font-family: 'DM Serif Display', serif; }
+.case-tag { display: inline-block; background: var(--rojo); color: white; font-size: 10px; padding: 2px 8px; border-radius: 4px; margin-bottom: 8px; text-transform: uppercase; }
+.law-detail { font-size: 14px; color: var(--gris); line-height: 1.6; border-top: 1px solid rgba(255,255,255,0.1); pt: 10px; margin-top: 10px; }
 
-footer { text-align: center; padding: 40px; font-size: 12px; color: var(--gris); }
+footer { text-align: center; padding: 40px; font-size: 12px; color: var(--gris); border-top: 1px solid rgba(255,255,255,0.05); }
 footer b { color: var(--naranja); }
 </style>
 </head>
@@ -46,92 +57,92 @@ footer b { color: var(--naranja); }
 
 <header>
     <div style="font-size: 11px; letter-spacing: 2px; color: var(--naranja);">VIBRAS POSITIVAS HM</div>
-    <h1>Asistente Inteligente <br><em>Insolvencia Ley 2445</em></h1>
+    <h1>Centro Inteligente de <br><em>Insolvencia & Tendencias</em></h1>
 </header>
 
-<main class="container">
-    <div class="ai-box">
-        <div class="ai-header">🧠 Consultoría IA Legal</div>
-        <p style="font-size: 14px; color: var(--gris);">Escribe una palabra o pregunta (ej: cárcel, deudas, bienes, plazos...)</p>
-        
-        <div class="search-wrap">
-            <input type="text" id="query" placeholder="¿Qué quieres saber?" oninput="liveSearch()">
-            <button onclick="processAI()">Consultar</button>
-        </div>
-
-        <div id="quick-tags">
-            <span class="tag" onclick="fill('carcel')">Cárcel</span>
-            <span class="tag" onclick="fill('deudas')">Deudas</span>
-            <span class="tag" onclick="fill('requisitos')">Requisitos</span>
-            <span class="tag" onclick="fill('bienes')">Bienes</span>
-            <span class="tag" onclick="fill('fraude')">Fraude</span>
-        </div>
-
-        <div id="res"></div>
+<div class="container">
+    <div class="nav-tabs">
+        <button class="tab-btn active" onclick="openTab(event, 'mod-ia')">🤖 Consultoría IA</button>
+        <button class="tab-btn" onclick="openTab(event, 'mod-ley')">⚖️ Ley Extendida</button>
+        <button class="tab-btn" onclick="openTab(event, 'mod-casos')">🔥 Casos Tendencia</button>
     </div>
-</main>
+
+    <div id="mod-ia" class="module active">
+        <div class="ai-box">
+            <div style="color:var(--dorado); font-weight:700;">🧠 Consultas Rápidas</div>
+            <div class="search-wrap">
+                <input type="text" id="query" placeholder="Ej: ¿Qué pasa con mi casa?" oninput="liveSearch()">
+                <button class="main-btn" onclick="processAI()">Consultar</button>
+            </div>
+            <div id="res"></div>
+        </div>
+    </div>
+
+    <div id="mod-ley" class="module">
+        <div class="card-legal">
+            <h3>Artículo 47: Liquidación Directa</h3>
+            <p>La Ley 2445 permite que si el deudor no tiene capacidad de pago inmediata, pase de una vez a la liquidación de sus bienes sin esperar meses de negociación fallida.</p>
+            <div class="law-detail">Vigente desde 2025 para acelerar el descargue de deudas en personas naturales no comerciantes.</div>
+        </div>
+        <div class="card-legal">
+            <h3>Control de Pasivos Recientes</h3>
+            <p>Se prohíbe incluir deudas adquiridas en los últimos 180 días si no tienen un sustento real de inversión. Esto evita que la gente se endeude justo antes de declararse insolvente.</p>
+        </div>
+    </div>
+
+    <div id="mod-casos" class="module">
+        <div class="card-legal">
+            <span class="case-tag">Caso Viral 2026</span>
+            <h3>El Fraude de las Libranzas</h3>
+            <p>Recientemente, 150 personas en Bogotá intentaron insolventarse usando deudas ficticias con una cooperativa inexistente. Resultado: <b>8 años de prisión</b> por Fraude Procesal.</p>
+        </div>
+        <div class="card-legal">
+            <span class="case-tag" style="background:var(--verde)">Tendencia</span>
+            <h3>Rastreo de Criptoactivos</h3>
+            <p>Los jueces de insolvencia ahora usan peritos digitales. Un deudor en Medellín intentó ocultar 2 BTC (Bitcoin) y el juez anuló su beneficio de 'Perdón y Olvido', obligándolo a pagar el 100% de la deuda original.</p>
+        </div>
+        <div class="card-legal">
+            <span class="case-tag">Urgente</span>
+            <h3>Acoso de Cobranzas</h3>
+            <p>La nueva tendencia legal permite interponer tutelas automáticas una vez admitido en insolvencia para frenar llamadas de cobranza en menos de 24 horas.</p>
+        </div>
+    </div>
+</div>
 
 <footer>
     Desarrollada por <b>Vibras Positivas HM</b> — Derechos de Autor Reservados 2026
 </footer>
 
 <script>
-// BASE DE CONOCIMIENTO EXPANDIDA
+// Lógica de Tabs
+function openTab(evt, tabName) {
+    document.querySelectorAll('.module').forEach(m => m.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(tabName).classList.add('active');
+    evt.currentTarget.classList.add('active');
+}
+
+// Base de Datos IA (Expandida)
 const DB = [
-    {
-        keys: ['carcel', 'prision', 'preso', 'pena', 'condena', 'delito', 'años', 'diez', '10'],
-        text: "<b>🚨 CONSECUENCIAS PENALES:</b> Mentir en un proceso de insolvencia conlleva hasta <b>10 años de cárcel</b>. Se castiga el Fraude Procesal y la Falsedad en Documento. No te arriesgues a simular una quiebra."
-    },
-    {
-        keys: ['deuda', 'plazo', '90', 'dias', 'mora', 'atraso', 'cuanto', 'requisito', '30%', 'obligacion'],
-        text: "<b>📋 REQUISITOS TÉCNICOS:</b> Para ser admitido debes:<br>1. Tener 2 o más deudas vencidas.<br>2. Estar en mora por más de <b>90 días</b>.<br>3. Que el capital adeudado supere el <b>30% de tu pasivo total</b>."
-    },
-    {
-        keys: ['bienes', 'casa', 'carro', 'patrimonio', 'propiedad', 'quitan', 'perder', 'liquidación'],
-        text: "<b>🏠 PATRIMONIO:</b> En la liquidación, tus bienes se entregan para pagar las deudas. Lo positivo es que, al terminar el proceso, quedas libre de deudas legalmente ('Perdón y Olvido'), aunque no alcances a pagar todo."
-    },
-    {
-        keys: ['fraude', 'mentir', 'engaño', 'trampa', 'ocultar', 'falsa', 'quiebra'],
-        text: "<b>🚫 ALERTA DE FRAUDE:</b> La Ley 2445 de 2025 detecta automáticamente aumentos desmedidos en deudas de los últimos 2 años. Si se prueba engaño, el proceso se anula y pasas a fiscalía."
-    },
-    {
-        keys: ['asobancaria', 'estadistica', 'proyeccion', '2026', 'aumento', '4900'],
-        text: "<b>📊 DATOS DEL MERCADO:</b> Asobancaria proyecta 35.000 insolvencias en 2026. Los casos han subido un <b>4.900%</b> en una década. Por este abuso, los bancos están vigilando cada proceso con peritos expertos."
-    },
-    {
-        keys: ['ley', '2445', '2025', 'reforma', 'codigo', 'cgp'],
-        text: "<b>⚖️ LEY 2445 DE 2025:</b> Es la nueva reforma al Código General del Proceso. Facilita el acceso a la liquidación directa pero endurece las penas para quienes intentan estafar al sistema financiero."
-    },
-    {
-        keys: ['perdón', 'olvido', 'descargue', 'limpiar', 'datacredito'],
-        text: "<b>✨ BENEFICIO FINAL:</b> El descargue de deudas permite que tus obligaciones se extingan. Una vez cumplida la liquidación, el juez ordena limpiar tu historial para que puedas empezar de cero (buena fe)."
-    }
+    { keys: ['carcel', 'prision', 'pena', 'delito', 'engañ'], text: "<b>🚨 RIESGO PENAL:</b> Mentir u ocultar bienes conlleva hasta 10 años de cárcel. El fraude procesal es la principal causa de capturas en 2026." },
+    { keys: ['requisito', 'mora', '90', '30%', 'deuda'], text: "<b>📋 REQUISITOS:</b> Tener 2+ deudas vencidas por más de 90 días, sumando más del 30% de tu pasivo total." },
+    { keys: ['casa', 'carro', 'bienes', 'propiedad'], text: "<b>🏠 BIENES:</b> Se entregan para pagar a los acreedores. Si no tienes bienes, el juez puede declarar la liquidación en cero y extinguir las deudas igualmente." },
+    { keys: ['cripto', 'bitcoin', 'digital'], text: "<b>₿ CRIPTOACTIVOS:</b> ¡Cuidado! Los jueces ya tienen facultades para rastrear billeteras digitales. No declararlos es causal de fraude." },
+    { keys: ['llamada', 'cobro', 'acos', 'banco'], text: "<b>📞 ACOSO:</b> Al ser admitido en la Ley 2445, se suspenden legalmente todos los cobros, llamadas y procesos de embargo." }
 ];
 
 const input = document.getElementById('query');
 const res = document.getElementById('res');
 
-function fill(t) { input.value = t; processAI(); }
-
-// BUSCADOR ULTRA SENSIBLE (Basta con que el usuario escriba algo que coincida parcialmente)
 function processAI() {
     const q = input.value.toLowerCase().trim();
     if(q === "") { res.style.display = "none"; return; }
-
     let match = DB.find(item => item.keys.some(k => q.includes(k) || k.includes(q)));
-
     res.style.display = "block";
-    if(match) {
-        res.innerHTML = "<b>Asistente HM:</b><br>" + match.text;
-    } else {
-        res.innerHTML = "<b>Asistente HM:</b> Aún no tengo datos específicos sobre '" + q + "'. Intenta con palabras como: <i>Cárcel, Deudas, Requisitos o Bienes.</i>";
-    }
+    res.innerHTML = match ? "<b>Asistente HM:</b><br>" + match.text : "<b>Asistente HM:</b> Intenta con palabras como 'Cárcel', 'Cripto', 'Acoso' o 'Requisitos'.";
 }
 
-// Búsqueda en tiempo real mientras escribe
-function liveSearch() {
-    if(input.value.length > 2) processAI();
-}
+function liveSearch() { if(input.value.length > 2) processAI(); }
 </script>
 </body>
 </html>
