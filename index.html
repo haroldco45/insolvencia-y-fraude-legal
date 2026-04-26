@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Insolvencia y Fraude Legal — Vibras Positivas HM</title>
+<script src="https://unpkg.com/compromise"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --azul:     #0A1628;
+  --azul-m:   #112240;
+  --azul-c:   #1D3461;
+  --naranja:  #F4A261;
+  --naranja-d:#E07B39;
+  --dorado:   #E9C46A;
+  --blanco:   #F8F5F0;
+  --gris-c:   #A8B2C4;
+  --rojo:     #E63946;
+  --verde:    #2A9D8F;
+  --text:     #CBD5E1;
+  --border:   rgba(244,162,97,.18);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--azul);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* ===== HEADER ===== */
+header {
+  background: linear-gradient(160deg, #0A1628 0%, #1D3461 100%);
+  position: relative; overflow: hidden;
+  padding: 40px 20px 32px;
+}
+header::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, transparent, var(--naranja), var(--dorado), var(--naranja), transparent);
+}
+
+.header-inner { max-width: 920px; margin: 0 auto; position: relative; z-index: 2; }
+
+.library-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 1px solid rgba(244,162,97,.4);
+  border-radius: 20px; padding: 5px 14px;
+  font-size: 11px; font-weight: 600; text-transform: uppercase; color: var(--naranja);
+  margin-bottom: 18px;
+}
+
+header h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(26px, 5vw, 48px);
+  color: var(--blanco);
+  margin-bottom: 12px;
+}
+
+/* ===== IA SEARCH BOX ===== */
+.ai-container {
+    background: rgba(244,162,97,0.05);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 25px;
+}
+.ai-title { font-size: 14px; font-weight: 700; color: var(--dorado); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+.ai-input-group { display: flex; gap: 10px; }
+input#ai-query {
+    flex: 1; background: #0f1a2e; border: 1px solid #2a3e5a;
+    padding: 12px; border-radius: 8px; color: white; outline: none;
+}
+.ai-btn {
+    background: var(--naranja); color: var(--azul); border: none;
+    padding: 0 20px; border-radius: 8px; font-weight: 700; cursor: pointer;
+}
+#ai-response { margin-top: 15px; font-size: 13px; color: var(--text); display: none; padding: 12px; border-left: 3px solid var(--naranja); background: rgba(255,255,255,0.03); }
+
+/* ===== TABS & CONTENT ===== */
+.nav-wrap { background: var(--azul-m); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+nav { max-width: 920px; margin: 0 auto; display: flex; overflow-x: auto; }
+.tab { flex: none; background: none; border: none; color: var(--gris-c); padding: 14px 16px; cursor: pointer; border-bottom: 2px solid transparent; }
+.tab.active { color: var(--naranja); border-bottom-color: var(--naranja); font-weight: 700; }
+
+main { max-width: 920px; margin: 0 auto; padding: 28px 16px; }
+.panel { display: none; animation: fadeIn 0.3s; }
+.panel.active { display: block; }
+
+.card { background: var(--azul-m); border-radius: 16px; padding: 20px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.05); }
+.hl-red { border-left: 4px solid var(--rojo); background: rgba(230,57,70,0.05); padding: 15px; border-radius: 8px; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+footer { text-align: center; padding: 30px; font-size: 11px; color: var(--gris-c); border-top: 1px solid rgba(255,255,255,0.05); }
+footer span { color: var(--naranja); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="library-tag">IA Legal Activa · Vibras Positivas HM</div>
+    <h1>Insolvencia y<br><em>Riesgos Penales</em></h1>
+  </div>
+</header>
+
+<div class="nav-wrap">
+  <nav>
+    <button class="tab active" onclick="showTab('inicio',this)">🏠 Inicio</button>
+    <button class="tab" onclick="showTab('ia',this)">🤖 Consultar IA</button>
+    <button class="tab" onclick="showTab('delitos',this)">⚖️ Delitos</button>
+  </nav>
+</div>
+
+<main>
+  <div class="panel" id="panel-ia">
+    <div class="ai-container">
+        <div class="ai-title">🧠 Asistente Virtual Vibras Positivas HM</div>
+        <p style="font-size: 12px; margin-bottom: 10px;">Haz una pregunta corta (ej: "¿Qué pasa si miento?" o "¿Cuántas deudas necesito?")</p>
+        <div class="ai-input-group">
+            <input type="text" id="ai-query" placeholder="Escribe tu duda aquí...">
+            <button class="ai-btn" onclick="askAI()">Consultar</button>
+        </div>
+        <div id="ai-response"></div>
+    </div>
+  </div>
+
+  <div class="panel active" id="panel-inicio">
+    <div class="card">
+        <h3>Resumen Ley 2445 de 2025</h3>
+        <p>La nueva normativa busca agilizar los procesos de insolvencia, pero impone castigos severos para quienes simulen crisis económicas.</p>
+    </div>
+  </div>
+
+  <div class="panel" id="panel-delitos">
+    <div class="card hl-red">
+        <h3 style="color:var(--rojo)">⚠️ Fraude Procesal</h3>
+        <p>Mencionar deudas inexistentes puede acarrear hasta 10 años de cárcel.</p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  Desarrollada por <span>Vibras Positivas HM</span> — Derechos de Autor Reservados 2026
+</footer>
+
+<script>
+// Lógica de navegación
+function showTab(id, btn) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// Lógica de la IA (NLP en cliente)
+function askAI() {
+    const query = document.getElementById('ai-query').value.toLowerCase();
+    const responseDiv = document.getElementById('ai-response');
+    let doc = nlp(query);
+    
+    responseDiv.style.display = "block";
+    
+    // Análisis de intención simple
+    if (query.includes("mentir") || query.includes("fals") || query.includes("engañar")) {
+        responseDiv.innerHTML = "<strong>Respuesta IA:</strong> Cuidado. La Ley 2445 de 2025 tipifica la falsa quiebra como Fraude Procesal, con penas de hasta 10 años de prisión.";
+    } else if (query.includes("deuda") || query.includes("cuanto") || query.includes("requisito")) {
+        responseDiv.innerHTML = "<strong>Respuesta IA:</strong> Necesitas incumplir el pago de 2 o más obligaciones por más de 90 días, que sumen al menos el 30% de tu pasivo total.";
+    } else if (query.includes("carcel") || query.includes("preso") || query.includes("pena")) {
+        responseDiv.innerHTML = "<strong>Respuesta IA:</strong> Las consecuencias penales incluyen cárcel, multas patrimoniales e inhabilidad para ejercer tu profesión.";
+    } else {
+        responseDiv.innerHTML = "<strong>Respuesta IA:</strong> No estoy seguro de entender. Intenta preguntar sobre 'penas de cárcel', 'requisitos de deudas' o 'riesgos de mentir'.";
+    }
+}
+</script>
+</body>
+</html>
