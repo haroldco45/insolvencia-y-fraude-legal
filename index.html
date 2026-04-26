@@ -3,98 +3,71 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Insolvencia y Riesgos Penales — Vibras Positivas HM</title>
-<script src="https://unpkg.com/compromise"></script>
+<title>IA Legal — Vibras Positivas HM</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;700&display=swap');
 
 :root {
-  --azul:     #0A1628;
-  --azul-m:   #112240;
-  --azul-c:   #1D3461;
-  --naranja:  #F4A261;
-  --naranja-d:#E07B39;
-  --dorado:   #E9C46A;
-  --blanco:   #F8F5F0;
-  --gris-c:   #A8B2C4;
-  --rojo:     #E63946;
-  --text:     #CBD5E1;
-  --border:   rgba(244,162,97,.18);
+  --azul: #0A1628; --azul-m: #112240; --naranja: #F4A261;
+  --dorado: #E9C46A; --blanco: #F8F5F0; --gris: #A8B2C4; --rojo: #E63946;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'DM Sans', sans-serif; background: var(--azul); color: var(--text); min-height: 100vh; }
+body { font-family: 'DM Sans', sans-serif; background: var(--azul); color: var(--blanco); }
 
-/* HEADER */
-header {
-  background: linear-gradient(160deg, #0A1628 0%, #1D3461 100%);
-  padding: 40px 20px; position: relative; text-align: center;
-}
-header::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, var(--naranja), var(--dorado), var(--naranja), transparent); }
-.library-tag { display: inline-block; border: 1px solid var(--naranja); border-radius: 20px; padding: 5px 15px; font-size: 11px; color: var(--naranja); margin-bottom: 10px; text-transform: uppercase; }
-h1 { font-family: 'DM Serif Display', serif; font-size: 32px; color: var(--blanco); }
+header { background: linear-gradient(160deg, #0A1628, #1D3461); padding: 40px 20px; text-align: center; border-bottom: 3px solid var(--naranja); }
+h1 { font-family: 'DM Serif Display', serif; font-size: 28px; margin-top: 10px; }
 
-/* IA INTERFACE */
-.ai-section { max-width: 800px; margin: 20px auto; padding: 0 15px; }
-.ai-card { background: var(--azul-m); border: 1px solid var(--border); border-radius: 16px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-.ai-header { color: var(--dorado); font-weight: 700; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
-.input-box { display: flex; gap: 10px; margin-top: 15px; }
-input { flex: 1; background: #081221; border: 1px solid #2a3e5a; padding: 15px; border-radius: 10px; color: white; font-size: 16px; }
-button { background: var(--naranja); color: var(--azul); border: none; padding: 0 25px; border-radius: 10px; font-weight: 700; cursor: pointer; transition: 0.3s; }
-button:hover { background: var(--dorado); transform: scale(1.02); }
+.container { max-width: 800px; margin: 20px auto; padding: 0 15px; }
 
-#response-area { 
+/* BUSCADOR IA */
+.ai-box { background: var(--azul-m); border: 1px solid rgba(244,162,97,0.3); border-radius: 16px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+.ai-header { color: var(--dorado); font-weight: 700; margin-bottom: 10px; font-size: 18px; }
+
+.search-wrap { display: flex; gap: 10px; margin: 15px 0; }
+input { flex: 1; background: #081221; border: 1px solid #2a3e5a; padding: 15px; border-radius: 10px; color: white; font-size: 16px; outline: none; }
+input:focus { border-color: var(--naranja); }
+button { background: var(--naranja); color: var(--azul); border: none; padding: 0 20px; border-radius: 10px; font-weight: 700; cursor: pointer; }
+
+#res { 
     margin-top: 20px; padding: 20px; border-radius: 12px; 
-    background: rgba(255,255,255,0.03); border-left: 4px solid var(--naranja);
-    display: none; line-height: 1.6; font-size: 15px;
+    background: rgba(255,255,255,0.05); border-left: 5px solid var(--naranja);
+    display: none; line-height: 1.6; animation: slideIn 0.3s ease;
 }
-.typing { color: var(--gris-c); font-style: italic; font-size: 13px; margin-bottom: 10px; display: none; }
+@keyframes slideIn { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: translateX(0); } }
 
-/* TABS */
-nav { display: flex; justify-content: center; background: var(--azul-m); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 10; }
-.tab { padding: 15px 20px; color: var(--gris-c); cursor: pointer; border: none; background: none; font-weight: 600; }
-.tab.active { color: var(--naranja); border-bottom: 3px solid var(--naranja); }
+.tag { display: inline-block; background: rgba(244,162,97,0.1); color: var(--naranja); padding: 4px 10px; border-radius: 5px; font-size: 12px; margin: 5px 3px; cursor: pointer; }
 
-footer { text-align: center; padding: 40px; font-size: 12px; color: var(--gris-c); opacity: 0.7; }
+footer { text-align: center; padding: 40px; font-size: 12px; color: var(--gris); }
 footer b { color: var(--naranja); }
 </style>
 </head>
 <body>
 
 <header>
-    <div class="library-tag">Sistema de Inteligencia Legal V2</div>
-    <h1>Insolvencia y <em>Riesgos Penales</em></h1>
+    <div style="font-size: 11px; letter-spacing: 2px; color: var(--naranja);">VIBRAS POSITIVAS HM</div>
+    <h1>Asistente Inteligente <br><em>Insolvencia Ley 2445</em></h1>
 </header>
 
-<nav>
-    <button class="tab active" onclick="switchTab('ia')">🤖 Consultar IA</button>
-    <button class="tab" onclick="switchTab('info')">📜 Base Legal</button>
-</nav>
-
-<main class="ai-section">
-    <div id="tab-ia">
-        <div class="ai-card">
-            <div class="ai-header">🧠 Asistente Virtual Vibras Positivas HM</div>
-            <p style="font-size: 14px;">Pregúntame sobre la Ley 2445, requisitos de mora, penas de cárcel o el proceso de liquidación.</p>
-            
-            <div class="input-box">
-                <input type="text" id="user-query" placeholder="Ej: ¿Cuáles son los riesgos de mentir?" onkeypress="handleKey(event)">
-                <button onclick="processAI()">Consultar</button>
-            </div>
-
-            <div id="typing-ui" class="typing">Analizando bases de datos legales...</div>
-            <div id="response-area"></div>
+<main class="container">
+    <div class="ai-box">
+        <div class="ai-header">🧠 Consultoría IA Legal</div>
+        <p style="font-size: 14px; color: var(--gris);">Escribe una palabra o pregunta (ej: cárcel, deudas, bienes, plazos...)</p>
+        
+        <div class="search-wrap">
+            <input type="text" id="query" placeholder="¿Qué quieres saber?" oninput="liveSearch()">
+            <button onclick="processAI()">Consultar</button>
         </div>
-    </div>
 
-    <div id="tab-info" style="display:none;">
-        <div class="ai-card">
-            <h2 style="color:var(--blanco); margin-bottom:15px;">Compendio Ley 2445 de 2025</h2>
-            <p><b>1. Mora Requerida:</b> Debe ser mayor al 30% del pasivo total.</p><br>
-            <p><b>2. Plazos:</b> 90 días de incumplimiento en 2 o más obligaciones.</p><br>
-            <p><b>3. Fraude:</b> Se castiga la ocultación de bienes y la simulación de deudas con terceros.</p><br>
-            <p><b>4. Beneficio:</b> Permite el "Perdón y Olvido" (descargue de deudas) si se actúa de buena fe.</p>
+        <div id="quick-tags">
+            <span class="tag" onclick="fill('carcel')">Cárcel</span>
+            <span class="tag" onclick="fill('deudas')">Deudas</span>
+            <span class="tag" onclick="fill('requisitos')">Requisitos</span>
+            <span class="tag" onclick="fill('bienes')">Bienes</span>
+            <span class="tag" onclick="fill('fraude')">Fraude</span>
         </div>
+
+        <div id="res"></div>
     </div>
 </main>
 
@@ -103,75 +76,61 @@ footer b { color: var(--naranja); }
 </footer>
 
 <script>
-// BASE DE CONOCIMIENTO EXTENDIDA
-const KNOWLEDGE_BASE = [
+// BASE DE CONOCIMIENTO EXPANDIDA
+const DB = [
     {
-        keywords: ['carcel', 'prision', 'preso', 'delito', 'pena', 'condena', 'castigo'],
-        response: "<b>⚠️ Riesgos Penales:</b> La Ley 2445 de 2025 es estricta. El fraude en insolvencia (mentir sobre bienes o deudas) conlleva hasta <b>10 años de cárcel</b>. Los delitos asociados son Fraude Procesal, Falsedad en Documento y Concierto para Delinquir."
+        keys: ['carcel', 'prision', 'preso', 'pena', 'condena', 'delito', 'años', 'diez', '10'],
+        text: "<b>🚨 CONSECUENCIAS PENALES:</b> Mentir en un proceso de insolvencia conlleva hasta <b>10 años de cárcel</b>. Se castiga el Fraude Procesal y la Falsedad en Documento. No te arriesgues a simular una quiebra."
     },
     {
-        keywords: ['requisito', 'cuanto', 'necesito', 'deuda', 'mora', 'porcentaje', '30%', '90 dias'],
-        response: "<b>📋 Requisitos Legales:</b> Para acogerte legalmente debes:<br>1. Tener 2 o más deudas vencidas.<br>2. Incumplimiento por más de <b>90 días</b>.<br>3. Que el valor de la mora represente más del <b>30% de tu deuda total</b>."
+        keys: ['deuda', 'plazo', '90', 'dias', 'mora', 'atraso', 'cuanto', 'requisito', '30%', 'obligacion'],
+        text: "<b>📋 REQUISITOS TÉCNICOS:</b> Para ser admitido debes:<br>1. Tener 2 o más deudas vencidas.<br>2. Estar en mora por más de <b>90 días</b>.<br>3. Que el capital adeudado supere el <b>30% de tu pasivo total</b>."
     },
     {
-        keywords: ['mentir', 'falso', 'ocultar', 'trampa', 'engaño', 'quiebra falsa'],
-        response: "<b>🚫 Alerta de Fraude:</b> Si declaras una 'Falsa Quiebra' u ocultas propiedades, el proceso se anula inmediatamente. Además de la cárcel, te enfrentarás a multas millonarias e inhabilidad para contratar o ejercer tu profesión por años."
+        keys: ['bienes', 'casa', 'carro', 'patrimonio', 'propiedad', 'quitan', 'perder', 'liquidación'],
+        text: "<b>🏠 PATRIMONIO:</b> En la liquidación, tus bienes se entregan para pagar las deudas. Lo positivo es que, al terminar el proceso, quedas libre de deudas legalmente ('Perdón y Olvido'), aunque no alcances a pagar todo."
     },
     {
-        keywords: ['beneficio', 'para que sirve', 'ayuda', 'perdon', 'olvido', 'descargue'],
-        response: "<b>✅ Beneficios de Ley:</b> Si actúas de buena fe, la ley te permite negociar tus deudas según tu capacidad real o llegar a una <b>liquidación patrimonial</b> donde tus deudas quedan saldadas ('Perdón y Olvido'), permitiéndote reintegrarte a la vida financiera."
+        keys: ['fraude', 'mentir', 'engaño', 'trampa', 'ocultar', 'falsa', 'quiebra'],
+        text: "<b>🚫 ALERTA DE FRAUDE:</b> La Ley 2445 de 2025 detecta automáticamente aumentos desmedidos en deudas de los últimos 2 años. Si se prueba engaño, el proceso se anula y pasas a fiscalía."
     },
     {
-        keywords: ['liquidación', 'bienes', 'casa', 'carro', 'que pasa con mis cosas'],
-        response: "<b>🏠 Sobre tus Bienes:</b> En una liquidación, los bienes que poseas se usan para pagar a los acreedores hasta donde alcancen. Lo positivo es que, una vez terminado el proceso, el saldo restante de la deuda se extingue legalmente."
+        keys: ['asobancaria', 'estadistica', 'proyeccion', '2026', 'aumento', '4900'],
+        text: "<b>📊 DATOS DEL MERCADO:</b> Asobancaria proyecta 35.000 insolvencias en 2026. Los casos han subido un <b>4.900%</b> en una década. Por este abuso, los bancos están vigilando cada proceso con peritos expertos."
+    },
+    {
+        keys: ['ley', '2445', '2025', 'reforma', 'codigo', 'cgp'],
+        text: "<b>⚖️ LEY 2445 DE 2025:</b> Es la nueva reforma al Código General del Proceso. Facilita el acceso a la liquidación directa pero endurece las penas para quienes intentan estafar al sistema financiero."
+    },
+    {
+        keys: ['perdón', 'olvido', 'descargue', 'limpiar', 'datacredito'],
+        text: "<b>✨ BENEFICIO FINAL:</b> El descargue de deudas permite que tus obligaciones se extingan. Una vez cumplida la liquidación, el juez ordena limpiar tu historial para que puedas empezar de cero (buena fe)."
     }
 ];
 
-function handleKey(e) { if(e.key === 'Enter') processAI(); }
+const input = document.getElementById('query');
+const res = document.getElementById('res');
 
-function switchTab(id) {
-    document.getElementById('tab-ia').style.display = id === 'ia' ? 'block' : 'none';
-    document.getElementById('tab-info').style.display = id === 'info' ? 'block' : 'none';
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    event.currentTarget.classList.add('active');
+function fill(t) { input.value = t; processAI(); }
+
+// BUSCADOR ULTRA SENSIBLE (Basta con que el usuario escriba algo que coincida parcialmente)
+function processAI() {
+    const q = input.value.toLowerCase().trim();
+    if(q === "") { res.style.display = "none"; return; }
+
+    let match = DB.find(item => item.keys.some(k => q.includes(k) || k.includes(q)));
+
+    res.style.display = "block";
+    if(match) {
+        res.innerHTML = "<b>Asistente HM:</b><br>" + match.text;
+    } else {
+        res.innerHTML = "<b>Asistente HM:</b> Aún no tengo datos específicos sobre '" + q + "'. Intenta con palabras como: <i>Cárcel, Deudas, Requisitos o Bienes.</i>";
+    }
 }
 
-function processAI() {
-    const query = document.getElementById('user-query').value.toLowerCase();
-    const respArea = document.getElementById('response-area');
-    const typing = document.getElementById('typing-ui');
-
-    if(!query) return;
-
-    // Efecto de carga
-    respArea.style.display = "none";
-    typing.style.display = "block";
-
-    setTimeout(() => {
-        typing.style.display = "none";
-        respArea.style.display = "block";
-        
-        // Algoritmo de búsqueda por relevancia
-        let bestMatch = null;
-        let maxHits = 0;
-
-        KNOWLEDGE_BASE.forEach(item => {
-            let hits = 0;
-            item.keywords.forEach(key => {
-                if(query.includes(key)) hits++;
-            });
-            if(hits > maxHits) {
-                maxHits = hits;
-                bestMatch = item.response;
-            }
-        });
-
-        if(bestMatch) {
-            respArea.innerHTML = bestMatch;
-        } else {
-            respArea.innerHTML = "<b>Asistente HM:</b> No encontré información específica sobre eso. Intenta preguntar por 'penas de cárcel', 'requisitos de deudas', 'ocultar bienes' o 'beneficios de la ley'.";
-        }
-    }, 800);
+// Búsqueda en tiempo real mientras escribe
+function liveSearch() {
+    if(input.value.length > 2) processAI();
 }
 </script>
 </body>
